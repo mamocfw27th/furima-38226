@@ -16,7 +16,7 @@
 ##アソシエーション
 
 has_many :items
-has_many :comments
+
 has_many :purchases
 
 ##itemsテーブル
@@ -35,7 +35,7 @@ has_many :purchases
 
 ##アソシエーション
 
-has_many :comments
+belong_to :purchase
 belongs_to :user
 
 ##destinationsテーブル
@@ -49,7 +49,7 @@ belongs_to :user
 | address  | string     | null: false                    |
 | building | string     | null: true                     |
 | phone    | string     | null: false                    |
-
+| purchase |references  | null: false, foreign_key       |
 
 ##アソシエーション
 
@@ -67,19 +67,6 @@ belongs_to :purchase
 
 belongs_to :user
 has_one :destination
-has_one :item
-
-##commentsテーブル
+belong_to :item
 
 
-| Column   | Type       | Options                        |
-| -------  | ---------- | ------------------------------ |
-| text     | text       |                                |
-| user | references  | null: false, foreign_key: true |
-| item  | references  | null: false, foreign_key: true |
-
-
-##アソシエーション
-
-belongs_to :user
-belongs_to :item
