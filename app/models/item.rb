@@ -7,9 +7,21 @@ class Item < ApplicationRecord
   belongs_to :postage
   has_one_attached :image
 
+  with_options presence: true, format: { with: /\A[0-9]+\z/ } do
+    validates price,numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to:9_999_999 }
+  end
+  
+  validates :item_name, presence: true
+  validates :explanation, presence: true
+  validates :area_id, presence: true
+  validates :arrival_id, presence: true
+  validates :category_id, presence: true
+  validates :condition_id, presence: true
+  validates :postage_id, presence: true
+
   validates :area_id, numericality: { other_than: 1}
   validates :arrival_id, numericality: { other_than: 1}
   validates :category_id, numericality: { other_than: 1}
   validates :condition_id, numericality: { other_than: 1}
-  validates :category_id, numericality: { other_than: 1}
+  validates :postage_id, numericality: { other_than: 1}
 end
