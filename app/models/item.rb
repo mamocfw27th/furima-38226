@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   belongs_to :arrival
   belongs_to :category
   belongs_to :condition
-  belongs_to :postage
+  has_one :postage
   has_one_attached :image
   belongs_to :user
 
