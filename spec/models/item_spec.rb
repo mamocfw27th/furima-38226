@@ -1,4 +1,4 @@
-require 'rails_helper'  
+require 'rails_helper'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
@@ -7,15 +7,15 @@ RSpec.describe Item, type: :model do
   describe '商品出品機能' do
     context '商品の出品ができる' do
       it '商品画像、商品名、商品説明、カテゴリー、商品の状態、配送料の負担、発送元の地域、発送までの日数、販売価格が存在すれば出品ができる' do
-      expect(@item).to be_valid
+        expect(@item).to be_valid
       end
     end
-      
-    context '商品の出品ができない' do 
+
+    context '商品の出品ができない' do
       it '商品画像が空では出品できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include ("Image can't be blank")
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が空では出品できない' do
         @item.item_name = ''
@@ -85,22 +85,22 @@ RSpec.describe Item, type: :model do
       it '価格に半角数字以外が含まれている場合は出品できない' do
         @item.price = 'A'
         @item.valid?
-        expect(@item.errors.full_messages).to include( "Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it '価格が300円未満では出品できない' do
         @item.price = '200'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it '価格が9999999円を超えると出品できない' do
         @item.price = '99999999'
         @item.valid?
-        expect(@item.errors.full_messages).to include( "Price must be less than or equal to 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it 'userが紐づいていないと出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end
