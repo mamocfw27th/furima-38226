@@ -10,4 +10,8 @@ class DestinationPurchase
     validates :user_id
   end
 
+  def save
+    purchase = Purchase.create(user_id: user_id, item_id: item_id)
+    Destination.create(post_num: post_num, region_id: region_id, phone: phone, city: city, address: address, building: building, user_id: user_id)
   end
+end
