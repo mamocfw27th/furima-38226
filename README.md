@@ -53,7 +53,7 @@ belongs_to :user
 
 ##アソシエーション
 
-belongs_to :purchase
+belongs_to :purchase 
 
 ##purchasesテーブル
 
